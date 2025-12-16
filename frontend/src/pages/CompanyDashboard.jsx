@@ -254,10 +254,11 @@ export default function CompanyDashboard() {
                     Excel
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-[#121214] border-white/10">
+                <DialogContent className="bg-[#121214] border-white/10" aria-describedby="upload-excel-description">
                   <DialogHeader>
                     <DialogTitle>Cargar Excel</DialogTitle>
                   </DialogHeader>
+                  <p id="upload-excel-description" className="sr-only">Sube un archivo Excel con datos financieros</p>
                   <div className="mt-4">
                     <p className="text-sm text-muted-foreground mb-4">
                       El archivo debe tener una columna "period" y las columnas de datos financieros.
@@ -279,9 +280,12 @@ export default function CompanyDashboard() {
                     Agregar Datos
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="bg-[#121214] border-white/10 max-w-2xl max-h-[90vh] overflow-y-auto">
+                <DialogContent className="bg-[#121214] border-white/10 max-w-2xl max-h-[90vh] overflow-y-auto" aria-describedby="add-data-description">
                   <DialogHeader>
                     <DialogTitle>Agregar Datos Financieros</DialogTitle>
+                    <p id="add-data-description" className="text-sm text-muted-foreground">
+                      Registra los datos financieros de un periodo
+                    </p>
                   </DialogHeader>
                   <form onSubmit={handleSubmitData} className="mt-4 space-y-4">
                     <div className="grid grid-cols-2 gap-4">

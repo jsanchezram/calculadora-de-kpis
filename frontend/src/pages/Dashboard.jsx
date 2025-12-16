@@ -115,9 +115,12 @@ export default function Dashboard() {
                 Nueva Empresa
               </Button>
             </DialogTrigger>
-            <DialogContent className="bg-[#121214] border-white/10">
+            <DialogContent className="bg-[#121214] border-white/10" aria-describedby="create-company-description">
               <DialogHeader>
                 <DialogTitle>Crear Nueva Empresa</DialogTitle>
+                <p id="create-company-description" className="text-sm text-muted-foreground">
+                  Ingresa el nombre de tu empresa para comenzar
+                </p>
               </DialogHeader>
               <form onSubmit={handleCreateCompany} className="space-y-4 mt-4">
                 <div className="space-y-2">
