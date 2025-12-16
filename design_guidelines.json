@@ -1,0 +1,184 @@
+{
+  "identity": {
+    "name": "E1",
+    "archetype": "The Anti-AI Designer",
+    "mission": "Create a top 1% financial SaaS dashboard that breaks the generic 'Bootstrap' mold."
+  },
+  "design_strategy": {
+    "theme": "Professional Dark Mode Financial",
+    "archetype_palette": "Jewel & Luxury (Deep Emeralds, Midnight Blues) mixed with Swiss High-Contrast",
+    "core_philosophy": "Data is the art. The UI should recede. High contrast for numbers, subtle elegance for containers.",
+    "grid_system": "The Control Room Grid (Dense, Data-Correlation focused)"
+  },
+  "typography": {
+    "headings": {
+      "family": "Manrope",
+      "weights": ["600", "700", "800"],
+      "usage": "Page titles, Section headers, KPI labels",
+      "letter_spacing": "tracking-tight"
+    },
+    "body": {
+      "family": "Inter",
+      "weights": ["400", "500"],
+      "usage": "General text, descriptions, form labels"
+    },
+    "data": {
+      "family": "JetBrains Mono",
+      "weights": ["400", "500"],
+      "usage": "Financial numbers, dates, IDs, tabular data",
+      "letter_spacing": "tracking-tight"
+    }
+  },
+  "colors": {
+    "background": {
+      "default": "#09090b",
+      "card": "#121214",
+      "subtle": "#18181b"
+    },
+    "text": {
+      "primary": "#fafafa",
+      "secondary": "#a1a1aa",
+      "muted": "#52525b"
+    },
+    "accents": {
+      "primary": "#10b981",
+      "primary_foreground": "#ffffff",
+      "secondary": "#6366f1",
+      "destructive": "#ef4444",
+      "warning": "#f59e0b",
+      "info": "#3b82f6"
+    },
+    "borders": {
+      "default": "#27272a",
+      "active": "#3f3f46"
+    },
+    "tailwind_config_extension": {
+      "colors": {
+        "background": "hsl(240 10% 3.9%)",
+        "foreground": "hsl(0 0% 98%)",
+        "card": "hsl(240 10% 3.9%)",
+        "card-foreground": "hsl(0 0% 98%)",
+        "popover": "hsl(240 10% 3.9%)",
+        "popover-foreground": "hsl(0 0% 98%)",
+        "primary": "hsl(142.1 76.2% 36.3%)",
+        "primary-foreground": "hsl(355.7 100% 97.3%)",
+        "secondary": "hsl(240 3.7% 15.9%)",
+        "secondary-foreground": "hsl(0 0% 98%)",
+        "muted": "hsl(240 3.7% 15.9%)",
+        "muted-foreground": "hsl(240 5% 64.9%)",
+        "accent": "hsl(240 3.7% 15.9%)",
+        "accent-foreground": "hsl(0 0% 98%)",
+        "destructive": "hsl(0 62.8% 30.6%)",
+        "destructive-foreground": "hsl(0 0% 98%)",
+        "border": "hsl(240 3.7% 15.9%)",
+        "input": "hsl(240 3.7% 15.9%)",
+        "ring": "hsl(142.1 76.2% 36.3%)"
+      }
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": {
+      "usage": "Sticky headers, modal overlays, toast notifications",
+      "classes": "bg-black/60 backdrop-blur-xl border-b border-white/10"
+    },
+    "tracing_beam": {
+      "usage": "Active states on KPI cards",
+      "description": "A subtle glowing border that animates on hover"
+    },
+    "noise_texture": {
+      "usage": "Global background overlay",
+      "opacity": "0.03",
+      "blend_mode": "overlay"
+    },
+    "shadows": {
+      "card": "shadow-[0_0_0_1px_rgba(255,255,255,0.1),0_4px_12px_rgba(0,0,0,0.5)]",
+      "glow": "shadow-[0_0_20px_rgba(16,185,129,0.15)]"
+    }
+  },
+  "layout_rules": {
+    "dashboard_grid": {
+      "type": "The Control Room",
+      "classes": "grid grid-cols-1 md:grid-cols-4 gap-4 p-4 md:p-6",
+      "item_behavior": "h-full w-full"
+    },
+    "spacing": {
+      "container_padding": "p-6 md:p-8",
+      "section_gap": "gap-8",
+      "internal_card_padding": "p-5"
+    },
+    "alignment": {
+      "numbers": "font-mono tracking-tight tabular-nums",
+      "labels": "text-xs uppercase tracking-wider text-muted-foreground font-semibold"
+    }
+  },
+  "components": {
+    "Card": {
+      "style": "Flat, dark background, 1px subtle border. No massive shadows.",
+      "customization": "Remove default shadow-sm. Add border-white/10. Add hover:border-white/20 transition-colors."
+    },
+    "Button": {
+      "style": "Sharp or slightly rounded (rounded-md). High contrast.",
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_15px_rgba(16,185,129,0.3)]",
+      "secondary": "bg-secondary text-secondary-foreground hover:bg-secondary/80"
+    },
+    "Input": {
+      "style": "Minimalist, dark background.",
+      "classes": "bg-zinc-900/50 border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/50"
+    },
+    "Table": {
+      "style": "Dense, high legibility.",
+      "header": "text-xs uppercase tracking-wider text-muted-foreground bg-zinc-900/50",
+      "row": "hover:bg-white/5 transition-colors border-b border-white/5"
+    }
+  },
+  "image_urls": {
+    "user_avatars": [
+      {
+        "url": "https://images.unsplash.com/photo-1629507208649-70919ca33793?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "description": "Professional man in blue shirt",
+        "category": "avatar"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1581065178047-8ee15951ede6?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "description": "Professional woman in black blazer",
+        "category": "avatar"
+      }
+    ],
+    "company_logos": [
+      {
+        "url": "https://images.unsplash.com/photo-1760386129108-d17b9cdfc4fa?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "description": "Neon logo sign",
+        "category": "logo"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1762939079730-23708c0dd337?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "description": "Medical/Tech logo",
+        "category": "logo"
+      }
+    ],
+    "backgrounds": [
+      {
+        "url": "https://images.unsplash.com/photo-1762279388988-3f8abcc7dca2?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "description": "Abstract neon lines futuristic",
+        "category": "hero_bg"
+      },
+      {
+        "url": "https://images.unsplash.com/photo-1687894986595-da703eb96375?crop=entropy&cs=srgb&fm=jpg&q=85",
+        "description": "Dark geometric wave",
+        "category": "login_bg"
+      }
+    ]
+  },
+  "universal_guidelines_for_main_agent": [
+    "DO NOT use gradients for backgrounds. Use solid dark colors with subtle noise or grain.",
+    "DO NOT use 'Inter' for headings. Use 'Manrope'.",
+    "ALWAYS use 'JetBrains Mono' for financial data and KPIs.",
+    "Ensure all interactive elements have 'data-testid'.",
+    "Use 'sonner' for toasts.",
+    "Use 'recharts' or Shadcn Charts for data visualization.",
+    "Maintain a 'Control Room' density for the dashboard - avoid excessive whitespace between related data points.",
+    "Use 'lucide-react' for icons.",
+    "For the 'Control Room' grid, ensure widgets stretch to fill height (h-full)."
+  ],
+  "instructions_to_main_agent": "You are building a professional financial SaaS. Strict adherence to the dark mode palette is required. Do not introduce light mode components unless explicitly toggled (but default is dark). Focus on the 'Control Room' grid layout for the main dashboard."
+}
