@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
 import CompanyDashboard from './pages/CompanyDashboard';
+import KpiDetailPage from './pages/KpiDetailPage';
 import './App.css';
 
 const ProtectedRoute = ({ children }) => {
@@ -77,6 +78,14 @@ function AppRoutes() {
         element={
           <ProtectedRoute>
             <CompanyDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/company/:id/kpi/:kpiKey"
+        element={
+          <ProtectedRoute>
+            <KpiDetailPage />
           </ProtectedRoute>
         }
       />
