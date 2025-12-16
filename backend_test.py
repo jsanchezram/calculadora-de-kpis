@@ -398,6 +398,170 @@ class SaaSFinancieroTester:
         
         return success
 
+    def test_kpis_metadata(self):
+        """Test KPIs metadata endpoint with traffic light rules"""
+        success, response = self.run_test(
+            "KPIs Metadata",
+            "GET",
+            "kpis/metadata",
+            200
+        )
+        
+        if success and 'kpis' in response:
+            kpis = response['kpis']
+            print(f"   Found {len(kpis)} KPIs")
+            
+            # Check for specific KPIs with semaphore rules
+            semaphore_kpis = [k for k in kpis if k.get('rule')]
+            print(f"   KPIs with semaphore rules: {len(semaphore_kpis)}")
+            
+            # Verify specific KPI rules
+            margen_neto = next((k for k in kpis if k['key'] == 'margen_neto'), None)
+            if margen_neto and margen_neto.get('rule', {}).get('type') == 'high_good':
+                print(f"   ✅ Margen Neto has high_good rule")
+            
+            churn_rate = next((k for k in kpis if k['key'] == 'churn_rate'), None)
+            if churn_rate and churn_rate.get('rule', {}).get('type') == 'low_good':
+                print(f"   ✅ Churn Rate has low_good rule")
+                
+        return success
+
+    def test_sales_operations(self):
+        """Test sales CRUD operations"""
+        if not self.token or not self.company_id:
+            self.log_test("Sales Operations", False, "No token or company ID available")
+            return False
+            
+        # Create sale - facturada
+        success1, response1 = self.run_test(
+            "Create Sale (Facturada)",
+            "POST",
+            f"sales/{self.company_id}",
+            200,
+            data={
+                "month": "2024-01",
+                "cliente": "Cliente Test 1",
+                "monto": 15000.0,
+                "estado": "facturada",
+                "nota": "Venta de prueba"
+            }
+        )
+        
+        # Create sale - confirmada
+        success2, response2 = self.run_test(
+            "Create Sale (Confirmada)",
+            "POST",
+            f"sales/{self.company_id}",
+            200,
+            data={
+                "month": "2024-01",
+                "cliente": "Cliente Test 2",
+                "monto": 25000.0,
+                "estado": "confirmada"
+            }
+        )
+        
+        # List sales
+        success3, response3 = self.run_test(
+            "List Sales",
+            "GET",
+            f"sales/{self.company_id}",
+            200
+        )
+        
+        if success3:
+            sales = response3 if isinstance(response3, list) else []
+            print(f"   Found {len(sales)} sales")
+            
+        # Sales summary
+        success4, response4 = self.run_test(
+            "Sales Summary",
+            "GET",
+            f"sales/{self.company_id}/summary",
+            200
+        )
+        
+        if success4:
+            summary = response4 if isinstance(response4, list) else []
+            print(f"   Summary has {len(summary)} months")
+            for month_data in summary:
+                if isinstance(month_data, dict):
+                    month = month_data.get('month')
+                    facturada = month_data.get('facturada', 0)
+                    confirmada = month_data.get('confirmada', 0)
+                    print(f"   {month}: Facturada S/{facturada}, Confirmada S/{confirmada}")
+        
+        return success1 and success2 and success3 and success4
+
+    def test_dashboard_range_filtering(self):
+        """Test dashboard range filtering endpoint"""
+        if not self.token or not self.company_id:
+            self.log_test("Dashboard Range Filter", False, "No token or company ID available")
+            return False
+            
+        # Add more data for range testing
+        self.run_test(
+            "Add Data Feb 2024",
+            "POST",
+            f"data/{self.company_id}",
+            200,
+            data={
+                "period": "2024-02",
+                "ingresos_netos": 60000.0,
+                "costos_directos": 25000.0,
+                "utilidad_neta": 15000.0
+            }
+        )
+        
+        self.run_test(
+            "Add Data Mar 2024",
+            "POST",
+            f"data/{self.company_id}",
+            200,
+            data={
+                "period": "2024-03",
+                "ingresos_netos": 70000.0,
+                "costos_directos": 30000.0,
+                "utilidad_neta": 18000.0
+            }
+        )
+        
+        # Test range filtering
+        success, response = self.run_test(
+            "Dashboard Range Filter",
+            "GET",
+            f"dashboard/{self.company_id}/range?from=2024-01&to=2024-02",
+            200
+        )
+        
+        if success:
+            periods = response if isinstance(response, list) else []
+            print(f"   Filtered range returned {len(periods)} periods")
+            if periods:
+                period_names = [p.get('period') for p in periods if isinstance(p, dict)]
+                print(f"   Periods: {period_names}")
+        
+        return success
+
+    def test_period_validation(self):
+        """Test period format validation (YYYY-MM)"""
+        if not self.token or not self.company_id:
+            self.log_test("Period Validation", False, "No token or company ID available")
+            return False
+            
+        # Test invalid period format
+        success, response = self.run_test(
+            "Invalid Period Format",
+            "POST",
+            f"data/{self.company_id}",
+            422,  # Validation error expected
+            data={
+                "period": "2024-1",  # Invalid format
+                "ingresos_netos": 1000.0
+            }
+        )
+        return success
+
     def test_unauthorized_access(self):
         """Test unauthorized access"""
         # Temporarily remove token
