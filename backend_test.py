@@ -600,11 +600,23 @@ class SaaSFinancieroTester:
         self.test_list_companies()
         self.test_get_company()
         
+        # NEW: KPIs metadata tests
+        self.test_kpis_metadata()
+        
         # Financial data tests
         self.test_add_financial_data()
         self.test_duplicate_period()
         self.test_get_dashboard()
         self.test_get_summary()
+        
+        # NEW: Period validation tests
+        self.test_period_validation()
+        
+        # NEW: Sales operations tests
+        self.test_sales_operations()
+        
+        # NEW: Dashboard range filtering tests
+        self.test_dashboard_range_filtering()
         
         # Cleanup tests
         self.test_delete_data()
