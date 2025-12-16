@@ -44,6 +44,15 @@ export const deleteCompany = (id) => api.delete(`/companies/${id}`);
 // Financial Data
 export const getDashboard = (companyId) => api.get(`/dashboard/${companyId}`);
 export const getSummary = (companyId) => api.get(`/summary/${companyId}`);
+export const getDashboardSummary = (companyId, fromPeriod, toPeriod) => {
+  let url = `/dashboard/${companyId}/summary`;
+  const params = new URLSearchParams();
+  if (fromPeriod) params.append('from', fromPeriod);
+  if (toPeriod) params.append('to', toPeriod);
+  if (params.toString()) url += `?${params.toString()}`;
+  return api.get(url);
+};
+export const getKpisMetadata = () => api.get('/kpis/metadata');
 export const addData = (companyId, data) => api.post(`/data/${companyId}`, data);
 export const updateData = (companyId, period, data) => api.put(`/data/${companyId}/${period}`, data);
 export const deleteData = (companyId, period) => api.delete(`/data/${companyId}/${period}`);
