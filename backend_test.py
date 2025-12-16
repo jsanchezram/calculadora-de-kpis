@@ -12,6 +12,7 @@ class SaaSFinancieroTester:
         self.tests_run = 0
         self.tests_passed = 0
         self.test_results = []
+        self.test_user_email = f"test_{datetime.now().strftime('%H%M%S')}@test.com"
 
     def log_test(self, name, success, details=""):
         """Log test result"""
